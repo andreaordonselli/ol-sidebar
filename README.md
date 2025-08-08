@@ -5,7 +5,7 @@ A responsive sidebar for [OpenLayers](https://openlayers.org/) 10.6
 ![Video](doc/ol-sidebar.gif)
 
 ## Preview
-Example code at [`examples/index.html`](examples/index.html) ([Preview](http://andreaordonselli.github.io/ol-sidebar/examples/index.html))
+Complete example code at [`examples/index.html`](examples/index.html) ([Preview](http://andreaordonselli.github.io/ol-sidebar/examples/index.html))
 
 ## Sidebar collapsed
 
@@ -116,8 +116,7 @@ sidebar `div` created above, and then add it as a new control to the map:
     map.addControl(sidebar);
 ```
 
-    
-
+Complete example code at [`examples/index.html`](examples/index.html) ([Preview](http://andreaordonselli.github.io/ol-sidebar/examples/index.html))
 
 ## License
 
