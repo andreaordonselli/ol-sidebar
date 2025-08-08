@@ -7,11 +7,11 @@ A responsive sidebar for [OpenLayers](https://openlayers.org/) 10.6
 ## Preview
 Complete example code at [`examples/index.html`](examples/index.html) ([Preview](http://andreaordonselli.github.io/ol-sidebar/examples/index.html))
 
-## Sidebar collapsed
+## Sidebar collapsed (smartphone view)
 
 ![Sidebar collapsed](ol-1.png) 
 
-## Sidebar extended
+## Sidebar extended (smartphone view)
 
 ![Sidebar extended](ol-2.png)
 
