@@ -30,14 +30,14 @@ used for the sidebar's buttons.
 Then create the `div` element within the HTML `body` for the map similarly to how one would for plain OpenLayers maps.
 
 ```HTML
-<div id="map"></div>
+    <div id="map"></div>
 ```
 
 Now define the sidebar (by default in a collapsed state) via the `sidebar` and `collapsed` classes:
 
 ```HTML
-<div id="sidebar" class="sidebar collapsed">
-</div>
+    <div id="sidebar" class="sidebar collapsed">
+    </div>
 ```
 
 Each sidebar element consists of a navigation tab connected to a tab pane
