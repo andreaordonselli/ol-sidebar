@@ -7,15 +7,16 @@
     <meta charset="utf-8">
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
-    <!--[if lte IE 8]><link rel="stylesheet" href="https://cdn.leafletjs.com/leaflet-0.7.2/leaflet.ie.css" /><![endif]-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@10.6.1/ol.min.css" type="text/css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css" />
 
-    <link rel="stylesheet" href="../css/leaflet-sidebar.css" />
+    <link rel="stylesheet" href="../css/ol-sidebar.css" />
 
     <style>
         body {
             padding: 0;
             margin: 0;
+            overflow: hidden;
         }
 
         html, body, #map {
@@ -27,6 +28,10 @@
             font-style: italic;
             color: #AAA;
         }
+		
+		.ol-zoom {
+			left: 4.5em;
+		}
     </style>
 </head>
 <body>
@@ -37,7 +42,7 @@
                 <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
                 <li><a href="#profile" role="tab"><i class="fa fa-user"></i></a></li>
                 <li class="disabled"><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li>
-                <li><a href="https://github.com/Turbo87/sidebar-v2" role="tab" target="_blank"><i class="fa fa-github"></i></a></li>
+                <li><a href="https://github.com/andreaordonselli/ol-sidebar" role="tab" target="_blank"><i class="fa fa-github"></i></a></li>
             </ul>
 
             <ul role="tablist">
@@ -49,11 +54,11 @@
         <div class="sidebar-content">
             <div class="sidebar-pane" id="home">
                 <h1 class="sidebar-header">
-                    sidebar-v2
+                    ol-sidebar
                     <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
                 </h1>
 
-                <p>A responsive sidebar for mapping libraries like <a href="http://leafletjs.com/">Leaflet</a> or <a href="http://openlayers.org/">OpenLayers</a>.</p>
+                <p>A responsive sidebar for <a href="http://openlayers.org/">OpenLayers</a>.</p>
 
                 <p class="lorem">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
 
@@ -79,24 +84,29 @@
     </div>
 
     <div id="map" class="sidebar-map"></div>
+	
+	<a class="github-fork-ribbon" href="https://github.com/andreaordonselli/ol-sidebar/" data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>
 
-    <a href="https://github.com/Turbo87/sidebar-v2/"><img style="position: fixed; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
-
-    <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
-    <script src="../js/leaflet-sidebar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ol@10.6.0/dist/ol.min.js"></script>
+    <script src="../js/ol-sidebar.js"></script>
 
     <script>
-        var map = L.map('map');
-        map.setView([51.2, 7], 9);
+        var map = new ol.Map({
+            target: 'map',
+            layers: [
+                new ol.layer.Tile({
+                    source: new ol.source.OSM()
+                })
+            ],
+            view: new ol.View({
+                center: ol.proj.transform([7, 51.2], 'EPSG:4326', 'EPSG:3857'),
+                zoom: 4
+            })
+        });
 
-        L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 18,
-            attribution: 'Map data &copy; OpenStreetMap contributors'
-        }).addTo(map);
+        var sidebar = new Sidebar({ element: 'sidebar', position: 'left' });
 
-        var marker = L.marker([51.2, 7]).addTo(map);
-
-        var sidebar = L.control.sidebar('sidebar').addTo(map);
+        map.addControl(sidebar);
     </script>
 </body>
 </html>
